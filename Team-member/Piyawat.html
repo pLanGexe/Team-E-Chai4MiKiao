@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
+  <meta charset="UTF-8">
   <title>Piyawat Thasom</title>
   <style>
     body {
@@ -9,8 +10,8 @@
       color: #f8f8f8;
       margin: 0;
       padding: 0;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
     .container {
       max-width: 500px;
@@ -122,17 +123,25 @@
       background-color: #444d56;
       transform: scale(1.05);
     }
+    #background-gif {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.18;
+    }
   </style>
 </head>
 <body>
-  <!-- พื้นหลัง GIF -->
-  <img src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" 
-       style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;opacity:0.18;" 
-       alt="Kakyoin Cherry GIF">
+  <!-- พื้นหลัง GIF จาก Giphy -->
+  <img id="background-gif" src="https://media.giphy.com/media/3o6Zt6ML6BklcajjsA/giphy.gif" alt="Background GIF">
 
   <div class="container">
-    <!-- Avatar -->
-    <img class="avatar" src="https://via.placeholder.com/140" alt="Piyawat Thasom">
+    <!-- Avatar ของคุณจากโฟลเดอร์ local -->
+    <img class="avatar" src="./our_picture/Piyawat.jpg" alt="Piyawat Thasom">
     
     <h1>Piyawat Thasom</h1>
     <div class="tagline">Gamer | Sci-fi Action | Zenless Zone Zero</div>
