@@ -1,72 +1,206 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Teams</title>
+  <title>Team-E-CHAI4MIKIAO</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f0f4f8; }
-    h1 { text-align: center; margin-top: 40px; }
-    ul { list-style: none; padding: 0; max-width: 400px; margin: 40px auto; }
-    li { background: #fff; margin-bottom: 16px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; padding: 16px; display: flex; align-items: center; }
-    li img { 
-      width: 120px; /* ปรับขนาดภาพให้ใหญ่ขึ้นอีก */
-      height: 120px; 
-      border-radius: 50%; 
-      margin-right: 16px; 
-      object-fit: cover; 
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    a { color: #007bff; text-decoration: none; font-size: 18px; }
-    a:hover { text-decoration: underline; }
+    .team-title {
+      text-align: center;
+      font-size: 3em;
+      font-weight: bold;
+      color: #ffd000;
+      letter-spacing: 6px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      text-shadow: 0 4px 24px #232526, 0 1px 0 #fff;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    }
+    .team-gallery {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .member-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px #0008;
+      overflow: hidden;
+      width: 220px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+    .member-card.blink {
+      animation: blink 0.5s 2;
+    }
+    @keyframes blink {
+      0% { border-color: #ffd000; }
+      25% { border-color: #fff; }
+      50% { border-color: #ffd000; }
+      75% { border-color: #fff; }
+      100% { border-color: #ffd000; }
+    }
+    .member-card:hover {
+      transform: scale(1.08) translateY(-8px);
+      box-shadow: 0 16px 48px #ffd00080;
+      border: 3px solid #ffd000;
+      z-index: 2;
+    }
+    .member-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: filter 0.2s;
+      filter: grayscale(0.2) brightness(0.95);
+      border-bottom: 2px solid #ffd000;
+    }
+    .member-card:hover .member-img {
+      filter: none;
+      border-bottom: 2px solid #fff;
+    }
+    .member-info {
+      padding: 18px 16px 12px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .member-name {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      color: #ffd000;
+      text-shadow: 0 2px 8px #232526;
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .member-card:hover .member-name {
+      color: #fff;
+    }
+    .member-desc {
+      font-size: 1em;
+      color: #f4a261;
+      margin-bottom: 6px;
+      min-height: 40px;
+    }
+    .member-role {
+      font-size: 0.95em;
+      color: #bfc0c0;
+      font-style: italic;
+    }
+    /* จิบิวิ่งและกระโดด */
+    .chibi1, .chibi2 {
+      position: fixed;
+      bottom: 32px;
+      width: 64px;
+      z-index: 99;
+      pointer-events: none;
+      animation-timing-function: linear;
+    }
+    .chibi1 {
+      left: 0;
+      animation: runChibi1 8s linear infinite;
+    }
+    .chibi2 {
+      left: 80vw;
+      animation: jumpChibi2 3s ease-in-out infinite;
+    }
+    @keyframes runChibi1 {
+      0% { left: -70px; }
+      10% { transform: scaleX(1); }
+      45% { left: calc(100vw - 70px); transform: scaleX(1); }
+      50% { left: calc(100vw - 70px); transform: scaleX(-1); }
+      95% { left: -70px; transform: scaleX(-1);}
+      100% { left: -70px; transform: scaleX(1);}
+    }
+    @keyframes jumpChibi2 {
+      0% { bottom: 32px; }
+      20% { bottom: 80px; }
+      40% { bottom: 32px; }
+      60% { bottom: 80px; }
+      80% { bottom: 32px; }
+      100% { bottom: 32px; }
+    }
+    @media (max-width: 900px) {
+      .team-gallery { gap: 18px; }
+      .member-card { width: 160px; }
+      .member-img { height: 160px; }
+      .chibi1, .chibi2 { width: 48px; }
+    }
+    @media (max-width: 600px) {
+      .team-title { font-size: 2em; }
+      .team-gallery { flex-direction: column; align-items: center; }
+      .member-card { width: 90vw; }
+      .member-img { height: 40vw; }
+      .chibi1, .chibi2 { width: 36px; }
+      .chibi2 { left: 60vw; }
+    }
   </style>
+  <script>
+    // เอฟเฟกต์กระพริบก่อนเปลี่ยนหน้า
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.member-card').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          card.classList.add('blink');
+          setTimeout(function() {
+            window.location.href = card.getAttribute('href');
+          }, 600); // รอกระพริบก่อนเปลี่ยนหน้า
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-
-
-<h1>My teams:</h1>
-
-
-<ul>
-  <li style="border-left: 8px solid #e63946;">
-    <img src="Team-member/our_picture/Noppasit.jpg" alt="Noppasit Sattham">
-    <div>
-      <a href="Team-member/Noppasit.html">Noppasit Sattham</a>
-      <div style="color:#e63946; font-size:15px; margin-top:8px;">
-        สายเกมเมอร์ & Warhammer<br>
-        ชอบวางกลยุทธ์และเล่นเกมแนววางแผน
+  <div class="team-title">Team-E-CHAI4MIKIAO</div>
+  <div class="team-gallery">
+    <a class="member-card" href="Team-member/Noppasit.html">
+      <img class="member-img" src="Team-member/our_picture/Noppasit.jpg" alt="Noppasit Sattham">
+      <div class="member-info">
+        <span class="member-name">Noppasit Sattham</span>
+        <div class="member-desc">สายเกมเมอร์ & Warhammer<br>ชอบวางกลยุทธ์และเล่นเกมแนววางแผน</div>
+        <div class="member-role">Game Strategist</div>
       </div>
-    </div>
-  </li>
-  <li style="border-left: 8px solid #457b9d;">
-    <img src="Team-member/our_picture/Sakon.jpg" alt="Sakon Keawkaow">
-    <div>
-      <a href="Team-member/Sakon.html">Sakon Keawkaow</a>
-      <div style="color:#457b9d; font-size:15px; margin-top:8px;">
-        สาย Coding<br>
-        ถนัด Backend และแก้ปัญหาเชิงเทคนิค
+    </a>
+    <a class="member-card" href="Team-member/Sakon.html">
+      <img class="member-img" src="Team-member/our_picture/Sakon.jpg" alt="Sakon Keawkaow">
+      <div class="member-info">
+        <span class="member-name">Sakon Keawkaow</span>
+        <div class="member-desc">สาย Coding<br>ถนัด Backend และแก้ปัญหาเชิงเทคนิค</div>
+        <div class="member-role">Backend Developer</div>
       </div>
-    </div>
-  </li>
-  <li style="border-left: 8px solid #ffd000;">
-    <img src="Team-member/our_picture/Piyawat.jpg" alt="Piyawat Thasom">
-    <div>
-      <a href="Team-member/Piyawat.html">Piyawat Thasom</a>
-      <div style="color:#ffd000; font-size:15px; margin-top:8px;">
-        สายออกแบบ Solidwork<br>
-        ชอบเล่นเกมและอ่านหนังสือการ์ตูน UX/UI
+    </a>
+    <a class="member-card" href="Team-member/Piyawat.html">
+      <img class="member-img" src="Team-member/our_picture/Piyawat.jpg" alt="Piyawat Thasom">
+      <div class="member-info">
+        <span class="member-name">Piyawat Thasom</span>
+        <div class="member-desc">สายออกแบบ Solidwork<br>ชอบเล่นเกมและอ่านหนังสือการ์ตูน UX/UI</div>
+        <div class="member-role">Designer & UX/UI</div>
       </div>
-    </div>
-  </li>
-  <li style="border-left: 8px solid #2a9d8f;">
-    <img src="Team-member/our_picture/Nattanon.jpg" alt="Nattanon Saengyaem">
-    <div>
-      <a href="Team-member/Nattanon.html">Nattanon Saengyaem</a>
-      <div style="color:#2a9d8f; font-size:15px; margin-top:8px;">
-        สายข้อมูล<br>
-        ถนัดวิเคราะห์และจัดการข้อมูล
+    </a>
+    <a class="member-card" href="Team-member/Nattanon.html">
+      <img class="member-img" src="Team-member/our_picture/Nattanon.jpg" alt="Nattanon Saengyaem">
+      <div class="member-info">
+        <span class="member-name">Nattanon Saengyaem</span>
+        <div class="member-desc">สายข้อมูล<br>ถนัดวิเคราะห์และจัดการข้อมูล</div>
+        <div class="member-role">Data Analyst</div>
       </div>
-    </div>
-  </li>
-</ul>
-
-
+    </a>
+  </div>
+  <!-- ตัวจิบิ 1 วิ่ง -->
+  <img src="Team-member/our_picture/chibi1.gif" class="chibi1" alt="chibi running">
+  <!-- ตัวจิบิ 2 กระโดด -->
+  <img src="Team-member/our_picture/chibi2.png" class="chibi2" alt="chibi jumping">
 </body>
 </html>
