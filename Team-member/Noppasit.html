@@ -1,217 +1,565 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Noppasit Sattham | Gamer Profile</title>
+  <title>Noppasit Sattham | PLANG.EXE Profile</title>
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #232526 0%, #414345 100%);
-      color: #f8f8f8;
+      background: radial-gradient(ellipse at 60% 40%, #16213e 0%, #232526 100%);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      color: #f8f8f8;
       position: relative;
       overflow-x: hidden;
     }
-    .container {
-      max-width: 500px;
+    .dog-bg-left, .dog-bg-right {
+      position: fixed;
+      bottom: 80px;
+      width: 240px; /* เพิ่มความยาวขึ้นอีก */
+      height: auto;
+      z-index: 2;
+      opacity: 0.22;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 12px #232526);
+      animation: dogDance 2.2s infinite alternate;
+    }
+    .dog-bg-left {
+      left: 4vw; /* ขยับเข้ากลางอีก */
+    }
+    .dog-bg-right {
+      right: 4vw;
+      transform: scaleX(-1);
+    }
+    @keyframes dogDance {
+      0% { bottom: 80px; }
+      50% { bottom: 100px; }
+      100% { bottom: 80px; }
+    }
+    .main-container {
+      max-width: 1100px; /* เพิ่มความกว้างขึ้น */
       margin: 48px auto;
-      background: rgba(34, 34, 34, 0.95);
+      background: rgba(22, 33, 62, 0.93);
       border-radius: 18px;
-      box-shadow: 0 8px 32px #0008;
-      padding: 32px;
-      text-align: center;
+      box-shadow: 0 8px 32px #000a, 0 0 0 4px #232526;
+      padding: 32px 32px 24px 32px; /* เพิ่ม padding */
       position: relative;
       z-index: 1;
+      display: flex;
+      gap: 40px; /* เพิ่มช่องว่าง */
+      align-items: flex-start;
+      border: 3px solid #0d47a1;
+      overflow-x: auto;
     }
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 12px;
-      color: #e63946;
-      letter-spacing: 2px;
+    .left-panel {
+      flex: 0 0 260px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      min-width: 220px;
     }
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 18px;
-      border: 4px solid #e63946;
-      box-shadow: 0 2px 12px #e63946a0;
-      background: #fff;
-    }
-    .tagline {
-      font-size: 1.2em;
-      font-weight: 500;
-      color: #f4a261;
-      margin-bottom: 18px;
-    }
-    ul {
-      text-align: left;
-      margin: 0 auto 18px auto;
-      padding: 0 0 0 18px;
-      max-width: 400px;
-      font-size: 1.08em;
-    }
-    li {
-      margin-bottom: 8px;
-    }
-    .fav-food {
-      color: #2a9d8f;
-      font-weight: bold;
-    }
-    .fav-song {
-      margin-top: 18px;
-      background: #22223b;
-      border-radius: 10px;
-      padding: 14px;
-      box-shadow: 0 2px 8px #22223b80;
+    .profile-header-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 18px;
+      margin-bottom: 2px;
+      margin-top: 12px;
       flex-wrap: wrap;
     }
-    .fav-song a {
-      color: #f4a261;
-      font-size: 1.1em;
-      text-decoration: none;
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 4px solid #1565c0;
+      box-shadow: 0 2px 12px #0d47a1a0;
+      background: #fff;
+    }
+    .nickname {
+      font-size: 2em;
       font-weight: bold;
-      transition: color 0.2s;
+      color: #00eaff;
+      letter-spacing: 2px;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      text-shadow: 0 2px 12px #0d47a1;
+      margin-bottom: 2px;
+      margin-top: 0;
+      white-space: nowrap;
     }
-    .fav-song a:hover {
-      color: #e63946;
-      text-decoration: underline;
-    }
-    .quote {
-      margin: 24px 0 8px 0;
-      font-size: 1.15em;
-      font-style: italic;
-      color: #f4a261;
-      background: #22223b;
-      border-radius: 10px;
-      padding: 10px 18px;
-      box-shadow: 0 2px 8px #22223b80;
-    }
-    .social {
-      margin: 18px 0;
-    }
-    .social a {
-      color: #e63946;
-      font-size: 1.2em;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 2px solid #e63946;
-      padding-bottom: 2px;
-      transition: color 0.2s;
-    }
-    .social a:hover {
-      color: #f4a261;
-      border-bottom: 2px solid #f4a261;
-    }
-    .back {
+    .ig-btn {
       display: inline-block;
-      margin-top: 28px;
-      color: #e63946;
-      text-decoration: none;
-      font-size: 1em;
-      padding: 6px 18px;
-      border-radius: 8px;
-      background: #fff1;
-      transition: background 0.2s;
-    }
-    .back:hover {
-      background: #e63946;
+      background: linear-gradient(90deg, #232526 60%, #1565c0 100%);
       color: #fff;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding: 8px 22px;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #1565c080;
+      text-decoration: none;
+      letter-spacing: 2px;
+      border: 2px solid #1565c0;
+      margin-bottom: 8px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     }
-    /* ตกแต่งภาพรอบๆ */
-    .corner-img {
-      position: absolute;
-      z-index: 0;
-      opacity: 0.7;
+    .ig-btn:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #232526 100%);
+      color: #ffd000;
+      box-shadow: 0 4px 24px #ffd00080;
+      border-color: #ffd000;
     }
-    .corner1 { top: 10px; left: 10px; width: 90px; }
-    .corner2 { top: 10px; right: 10px; width: 90px; }
-    .corner3 { bottom: 10px; left: 10px; width: 90px; }
-    .corner4 { bottom: 10px; right: 10px; width: 90px; }
-    .logo-center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      opacity: 0.5;
-      z-index: 0;
-      pointer-events: none;
+    .friends-title {
+      font-size: 1.1em;
+      color: #00eaff;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      margin-top: 12px;
+      text-shadow: 0 2px 8px #0d47a1;
+    }
+    .friends-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .friend-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #16213e;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #23252680;
+      transition: box-shadow 0.2s, color 0.2s, background 0.2s;
+      font-size: 1.15em;
+      padding: 10px 18px;
+      border: 2px solid #1565c0;
+    }
+    .friend-link:hover {
+      color: #00eaff;
+      background: #232526;
+      box-shadow: 0 4px 16px #00eaff80;
+      border-color: #00eaff;
+    }
+    .friend-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 3px solid #1565c0;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #23252680;
+    }
+    .friend-link:hover .friend-avatar {
+      transform: scale(1.12);
+      box-shadow: 0 4px 16px #00eaff80;
+      border-color: #00eaff;
+    }
+    .right-panel {
+      flex: 1 1 0;
+      min-width: 0;
+      overflow-x: auto;
+    }
+    .profile-info-box {
+      margin-bottom: 32px;
+      text-align: left;
+      width: 100%;
+      font-size: 1.08em;
+      background: #16213e;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #23252680;
+      padding: 18px 18px 12px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 32px;
+      justify-content: flex-start;
+      box-sizing: border-box;
+    }
+    .profile-info-item {
+      margin-bottom: 8px;
+      flex: 1 1 180px;
+      min-width: 160px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #0d47a1 0%, #1565c0 100%);
+      box-shadow: 0 2px 8px #0d47a180;
+      border-left: 5px solid #00eaff;
+      border-right: 5px solid #ffd000;
+      letter-spacing: 1px;
+      box-sizing: border-box;
+    }
+    .profile-info-item span {
+      color: #ffd000;
+      font-weight: normal;
+      margin-left: 8px;
+      letter-spacing: 0;
+    }
+    .profile-info-item:nth-child(2) span { color: #00eaff; }
+    .profile-info-item:nth-child(3) span { color: #2a9d8f; }
+    .profile-info-item:nth-child(4) span { color: #f4a261; }
+    .profile-info-item:nth-child(5) span { color: #e1306c; }
+    .profile-info-item:nth-child(6) span { color: #fff; }
+    .profile-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #232526;
     }
     .gallery {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin: 24px 0 0 0;
+      flex-wrap: nowrap;
+      gap: 18px;
+      margin: 12px 0 0 0;
+      overflow-x: auto;
+      align-items: flex-end;
+      box-sizing: border-box;
+    }
+    .gallery div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+      box-sizing: border-box;
     }
     .gallery img {
-      width: 70px;
-      border-radius: 10px;
+      width: 60px;
+      border-radius: 8px;
       box-shadow: 0 2px 8px #22223b80;
       background: #fff;
       transition: transform 0.2s;
+      border: 2px solid #1565c0;
+      cursor: pointer;
+      margin-bottom: 0;
+      box-sizing: border-box;
     }
     .gallery img:hover {
       transform: scale(1.15);
-      box-shadow: 0 4px 16px #e63946a0;
+      box-shadow: 0 4px 16px #00eaffa0;
+      border-color: #00eaff;
+    }
+    .emoji-label {
+      display: block;
+      font-size: 0.95em;
+      color: #00eaff;
+      margin-bottom: 2px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .emoji-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(22, 33, 62, 0.97);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .emoji-modal img {
+      max-width: 80vw;
+      max-height: 70vh;
+      border-radius: 24px;
+      box-shadow: 0 8px 48px #0d47a1a0;
+      border: 6px solid #00eaff;
+      background: #fff;
+      margin-bottom: 24px;
+    }
+    .close-emoji {
+      display: inline-block;
+      color: #fff;
+      background: #1565c0;
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 10px 32px;
+      border-radius: 16px;
+      border: 2px solid #00eaff;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #23252680;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+    .close-emoji:hover {
+      background: #00eaff;
+      color: #232526;
+      border-color: #1565c0;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25em;
+      padding: 14px 38px;
+      border-radius: 18px;
+      background: linear-gradient(90deg, #0d47a1 60%, #00eaff 100%);
+      font-weight: bold;
+      border: 3px solid #ffd000;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 24px #00eaff80, 0 2px 12px #23252680;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .back-btn:hover {
+      background: linear-gradient(90deg, #ffd000 60%, #0d47a1 100%);
+      color: #232526;
+      border-color: #00eaff;
+      box-shadow: 0 8px 32px #ffd00080;
+    }
+    .quote-box {
+      margin: 32px 0 24px 0;
+      padding: 18px 24px;
+      background: linear-gradient(90deg, #0d47a1 0%, #232526 100%);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px #23252680;
+      font-size: 1.25em;
+      color: #ffd000;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 1.5px;
+      border: 2px solid #00eaff;
+    }
+    .fav-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 18px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .fav-block {
+      background: linear-gradient(90deg, #1565c0 0%, #232526 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #23252680;
+      padding: 18px 22px;
+      min-width: 220px;
+      max-width: 340px;
+      color: #fff;
+      font-size: 1.08em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-left: 5px solid #00eaff;
+      border-right: 5px solid #ffd000;
+    }
+    .fav-title {
+      font-size: 1.08em;
+      font-weight: bold;
+      color: #ffd000;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .fav-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .fav-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fav-list img {
+      width: 80px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #22223b80;
+      background: #fff;
+    }
+    .fav-game-title {
+      color: #00eaff;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .fav-song-title {
+      color: #e1306c;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .fav-game-name {
+      color: #f4a261;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    @media (max-width: 900px) {
+      .main-container { flex-direction: column; gap: 0; padding: 8px; }
+      .left-panel { margin-bottom: 18px; min-width: 0; }
+      .right-panel { width: 100%; }
+      .profile-info-box { flex-direction: column; gap: 8px; }
+      .gallery img { width: 44px; }
+      .emoji-modal img { max-width: 98vw; max-height: 60vh; }
+      .dog-bg-left, .dog-bg-right { width: 120px; }
+    }
+    @media (max-width: 600px) {
+      .main-container { padding: 4px; }
+      .avatar { width: 80px; height: 80px; }
+      .friend-avatar { width: 20px; height: 20px; }
+      .gallery img { width: 32px; }
+      .emoji-modal img { max-width: 98vw; max-height: 40vh; }
+      .dog-bg-left, .dog-bg-right { width: 80px; }
     }
   </style>
+  <script>
+    // อิโมจิเต็มจอ
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.gallery img').forEach(function(img) {
+        img.addEventListener('click', function() {
+          var modal = document.getElementById('emoji-modal');
+          var modalImg = document.getElementById('emoji-modal-img');
+          modalImg.src = img.src;
+          modal.style.display = 'flex';
+        });
+      });
+      document.getElementById('close-emoji').addEventListener('click', function() {
+        document.getElementById('emoji-modal').style.display = 'none';
+      });
+    });
+  </script>
 </head>
 <body>
-  <!-- ใช้ dog.gif เป็นพื้นหลังขยับ -->
-  <img src="our_picture/dog.gif" style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;opacity:0.18;" alt="dog background">
-
-  <!-- ภาพตกแต่งรอบๆ -->
-  <img src="our_picture/our_picturelove.jpg" class="corner-img corner3" alt="love">
-  <img src="our_picture/our_picturequestion.jpg" class="corner-img corner4" alt="question">
-  <img src="our_picture/our_picturethankyou.jpg" class="corner-img corner1" alt="thankyou">
-  <img src="our_picture/our_picturesleepy.jpg" class="corner-img corner2" alt="sleepy">
-  <img src="our_picture/404logo.png" class="logo-center" alt="404 Logo">
-
-  <div class="container">
-    <img class="avatar" src="our_picture/Noppasit.jpg" alt="Noppasit Sattham">
-    <h1>Noppasit Sattham</h1>
-    <div class="tagline">Gamer | Sci-fi Lover | Warhammer Enthusiast</div>
-    <ul>
-      <li>เป็นคนชอบเล่นเกม โดยเฉพาะแนววางกลยุทธ์และ Warhammer</li>
-      <li>หลงใหลในนิยายอวกาศและเรื่องราวไซไฟ</li>
-      <li>เวลาว่างชอบอ่านหนังสือและออกไปเที่ยวกับเพื่อนๆ</li>
-      <li class="fav-food">อาหารที่ชอบ: Pizza & หมูกระทะ</li>
-    </ul>
-    <div class="quote">"มีแต่ทำกับไม่ทำ ไม่มีคำว่าพยายาม"</div>
-    <div class="fav-song">
-      <span>เพลงที่ชอบ:</span>
-      <a href="https://www.youtube.com/watch?v=-GkYmMEshVc" target="_blank">ฉันยังเก็บเธอไว้</a>
-      <a href="https://www.youtube.com/watch?v=-GkYmMEshVc" target="_blank">
-        <img src="https://img.youtube.com/vi/-GkYmMEshVc/hqdefault.jpg" alt="ฉันยังเก็บเธอไว้" style="width:120px; border-radius:8px; box-shadow:0 2px 8px #22223b80;">
+  <img src="our_picture/dog.gif" class="dog-bg-left" alt="dog left">
+  <img src="our_picture/dog.gif" class="dog-bg-right" alt="dog right">
+  <div class="main-container">
+    <div class="left-panel">
+      <div class="profile-header-row">
+        <img class="avatar" src="our_picture/Noppasit.jpg" alt="Noppasit Sattham">
+        <div class="nickname">Noppasit Sattham</div>
+      </div>
+      <a class="ig-btn" href="https://www.instagram.com/_noppasit/" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width:22px;vertical-align:middle;margin-right:8px;">
+        Instagram
       </a>
-      <span style="margin-left:16px;">| <b>เกมที่ชอบเล่น:</b></span>
-      <a href="https://www.youtube.com/watch?v=53SNzlJaK9I" target="_blank">
-        <img src="https://img.youtube.com/vi/53SNzlJaK9I/hqdefault.jpg" alt="Warhammer 40K" style="width:120px; border-radius:8px; box-shadow:0 2px 8px #22223b80;">
-      </a>
-      <span style="font-size:1em; color:#f4a261;">Rainbow Six Siege X</span>
+      <div class="friends-title">เพื่อนของฉัน</div>
+      <div class="friends-list">
+        <a class="friend-link" href="Sakon.html">
+          <img class="friend-avatar" src="our_picture/Sakon.jpg" alt="Sakon">
+          Sakon Keawkaow
+        </a>
+        <a class="friend-link" href="Piyawat.html">
+          <img class="friend-avatar" src="our_picture/Piyawat.jpg" alt="Piyawat">
+          Piyawat Thasom
+        </a>
+        <a class="friend-link" href="Nattanon.html">
+          <img class="friend-avatar" src="our_picture/Nattanon.jpg" alt="Nattanon">
+          Nattanon Saengyaem
+        </a>
+        <a class="friend-link" href="https://bobotoya.github.io/team-A/team-members/thanwarat.html" target="_blank">
+          <img class="friend-avatar" src="our_picture/profile.jpg" alt="Thanwarat">
+          Thanwarat Pantharot
+        </a>
+      </div>
+      <a class="back-btn" href="../index.html">← กลับหน้าหลัก</a>
     </div>
-    <div class="gallery">
-      <img src="our_picture/our_picturethankyou.jpg" alt="thankyou">
-      <img src="our_picture/our_picturesleepy.jpg" alt="sleepy">
-      <img src="our_picture/our_picturelove.jpg" alt="love">
-      <img src="our_picture/our_picturequestion.jpg" alt="question">
-      <img src="our_picture/our_picturesorry.jpg" alt="sorry">
-      <img src="our_picture/our_pictureok.jpg" alt="ok">
-      <img src="our_picture/our_pictureno.jpg" alt="no">
-      <img src="our_picture/our_picturesleepy (2).jpg" alt="sleepy2">
+    <div class="right-panel">
+      <div class="profile-info-box">
+        <div class="profile-info-item"><b>Sex / Age:</b> <span>Male / 20</span></div>
+        <div class="profile-info-item"><b>Birthday:</b> <span>18 March</span></div>
+        <div class="profile-info-item"><b>Location:</b> <span>Chiangmai, Thailand</span></div>
+        <div class="profile-info-item"><b>Hometown:</b> <span>Lampang</span></div>
+        <div class="profile-info-item"><b>Religion:</b> <span>Buddhist/Taoist</span></div>
+        <div class="profile-info-item"><b>Languages:</b> <span>Thai</span></div>
+      </div>
+      <div class="profile-title">กล่องแสดงอิโมจิความรู้สึก</div>
+      <div class="gallery">
+        <div>
+          <span class="emoji-label">ขอบคุณ</span>
+          <img src="our_picture/our_picturethankyou.jpg" alt="thankyou">
+        </div>
+        <div>
+          <span class="emoji-label">ขอโทษ</span>
+          <img src="our_picture/our_picturesorry.jpg" alt="sorry">
+        </div>
+        <div>
+          <span class="emoji-label">ง่วง</span>
+          <img src="our_picture/our_picturesleepy.jpg" alt="sleepy">
+        </div>
+        <div>
+          <span class="emoji-label">ง่วงมาก</span>
+          <img src="our_picture/our_picturesleepy (2).jpg" alt="sleepy2">
+        </div>
+        <div>
+          <span class="emoji-label">สงสัย</span>
+          <img src="our_picture/our_picturequestion.jpg" alt="question">
+        </div>
+        <div>
+          <span class="emoji-label">รัก</span>
+          <img src="our_picture/our_picturelove.jpg" alt="love">
+        </div>
+        <div>
+          <span class="emoji-label">OK</span>
+          <img src="our_picture/our_pictureok.jpg" alt="ok">
+        </div>
+        <div>
+          <span class="emoji-label">NO</span>
+          <img src="our_picture/our_pictureno.jpg" alt="no">
+        </div>
+      </div>
+      <div id="emoji-modal" class="emoji-modal">
+        <img id="emoji-modal-img" src="" alt="emoji-full">
+        <button id="close-emoji" class="close-emoji">ปิด</button>
+      </div>
+      <!-- ลบกล่องแสดงผลงาน, เลเวล, เหรียญตรา, XP, เกม ออก -->
+      <!-- ...profile-info, quote, fav-song... -->
+      <div class="profile-info">
+        <ul>
+          <li>คนชอบเล่นเกม FPS เช่น APEX CS2</li>
+          <li>หลงใหลในนิยายอวกาศและเรื่องราวไซไฟ เช่น Warhammer 40k</li>
+          <li>เวลาว่างชอบอ่านหนังสือ, เล่นเกม และออกไปเที่ยวกับเพื่อนๆ</li>
+          <li class="fav-food">อาหารที่ชอบ: Pizza & หมูกระทะ</li>
+        </ul>
+        <div class="quote-box">
+          "มีแต่ทำกับไม่ทำ ไม่มีคำว่าพยายาม"
+        </div>
+        <div class="fav-section">
+          <div class="fav-block">
+            <div class="fav-title fav-song-title">เพลงที่ชอบ</div>
+            <ul class="fav-list">
+              <li>
+                <span>ฉันยังเก็บเธอไว้</span>
+                <img src="https://img.youtube.com/vi/-GkYmMEshVc/hqdefault.jpg" alt="ฉันยังเก็บเธอไว้" style="margin-left:10px; border-radius:8px;">
+              </li>
+            </ul>
+            <div style="margin-top:14px; width:100%; display:flex; flex-direction:column; align-items:center;">
+              <a href="https://www.youtube.com/watch?v=-GkYmMEshVc" target="_blank" style="text-decoration:none;">
+                <img src="https://img.youtube.com/vi/-GkYmMEshVc/hqdefault.jpg" alt="ฉันยังเก็บเธอไว้" style="width:320px; border-radius:12px; box-shadow:0 2px 12px #23252680;">
+              </a>
+            </div>
+          </div>
+          <div class="fav-block">
+            <div class="fav-title fav-game-title">เกมที่ชอบเล่น</div>
+            <ul class="fav-list">
+              <li>
+                <span class="fav-game-name">Rainbow Six Siege X</span>
+                <img src="https://img.youtube.com/vi/53SNzlJaK9I/hqdefault.jpg" alt="Rainbow Six Siege X" style="margin-left:10px; border-radius:8px;">
+              </li>
+            </ul>
+            <div style="margin-top:14px; width:100%; display:flex; justify-content:center;">
+              <iframe width="320" height="180" src="https://www.youtube.com/embed/53SNzlJaK9I?start=2" title="Rainbow Six Siege X" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px; box-shadow:0 2px 12px #23252680;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="social">
-      <span>Instagram: </span>
-      <a href="https://www.instagram.com/_noppasit/" target="_blank">@_noppasit</a>
-    </div>
-    <a class="back" href="../index.html">← กลับหน้าหลัก</a>
   </div>
 </body>
 </html>
