@@ -6,7 +6,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      background: #181d2a;
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -237,6 +237,69 @@
       .chibi-dance { left: 2vw; }
       .chibi-dance2 { right: 2vw; }
     }
+    /* พื้นหลังอวกาศ sci-fi */
+    .space-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 30%, #3a3f5c 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 70%, #2e3350 0%, transparent 70%),
+        linear-gradient(120deg, #181d2a 0%, #232526 100%);
+      opacity: 0.95;
+    }
+    /* ดาวระยิบระยับ */
+    .stars {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.22;
+      animation: starTwinkle 3s infinite alternate;
+    }
+    @keyframes starTwinkle {
+      0% { opacity: 0.18; }
+      100% { opacity: 0.28; }
+    }
+    /* เพิ่ม sci-fi glow effect */
+    .space-bg::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 60%;
+      width: 600px; height: 180px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center, #00eaff55 0%, transparent 80%);
+      opacity: 0.5;
+      filter: blur(12px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .github-link {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 100;
+      background: linear-gradient(90deg, #232526 60%, #00eaff 100%);
+      color: #fff;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.15em;
+      font-weight: bold;
+      padding: 8px 22px;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #00eaff80;
+      text-decoration: none;
+      letter-spacing: 2px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      border: 2px solid #00eaff;
+    }
+    .github-link:hover {
+      background: linear-gradient(90deg, #00eaff 60%, #232526 100%);
+      color: #ffd000;
+      box-shadow: 0 4px 24px #ffd00080;
+      border-color: #ffd000;
+    }
   </style>
   <script>
     // เอฟเฟกต์กระพริบก่อนเปลี่ยนหน้า
@@ -272,6 +335,9 @@
   </script>
 </head>
 <body>
+  <!-- พื้นหลังอวกาศ sci-fi -->
+  <div class="space-bg"></div>
+  <div class="stars"></div>
   <div class="team-title">Team-E-CHAI4MIKIAO</div>
   <div class="team-gallery">
     <a class="member-card noppasit" href="Team-member/Noppasit.html">
@@ -313,5 +379,9 @@
   <img src="Team-member/our_picture/2.gif" class="chibi-dance" alt="chibi dancing">
   <!-- ตัวจิบิ 3 ยืนเต้น -->
   <img src="Team-member/our_picture/3.gif" class="chibi-dance2" alt="chibi dancing">
+  <!-- ดาวบนพื้นหลัง -->
+  <div class="stars"></div>
+  <a href="https://github.com/pLanGexe/Team-E-Chai4MiKiao" target="_blank" class="github-link">GitHub</a>
 </body>
-</html>
+<!-- ลบ .team-motto และ .bg-lines (เส้นเฉียง) ออกจาก HTML -->
+<!-- ลบ CSS .bg-lines ออกจาก <style> ด้วย -->
