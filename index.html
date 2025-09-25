@@ -3,6 +3,7 @@
 <head>
   <title>Team-E-CHAI4MIKIAO</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background: linear-gradient(120deg, #232526 0%, #414345 100%);
@@ -11,16 +12,27 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    /* เอฟเฟกต์ชื่อทีมให้เด่นขึ้น */
     .team-title {
       text-align: center;
       font-size: 3em;
       font-weight: bold;
-      color: #ffd000;
       letter-spacing: 6px;
       margin-top: 48px;
       margin-bottom: 24px;
-      text-shadow: 0 4px 24px #232526, 0 1px 0 #fff;
       font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(90deg, #ffd000 20%, #00eaff 50%, #ff4f81 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      text-shadow: 0 4px 24px #232526, 0 1px 0 #fff, 0 0 32px #ffd000, 0 0 48px #00eaff;
+      animation: teamGlow 1.5s infinite alternate;
+      filter: drop-shadow(0 0 16px #ffd000) drop-shadow(0 0 8px #00eaff);
+    }
+    @keyframes teamGlow {
+      0% { filter: drop-shadow(0 0 16px #ffd000) drop-shadow(0 0 8px #00eaff); }
+      100% { filter: drop-shadow(0 0 32px #ff4f81) drop-shadow(0 0 24px #00eaff); }
     }
     .team-gallery {
       display: flex;
@@ -30,16 +42,43 @@
       margin-bottom: 48px;
       flex-wrap: wrap;
     }
+    /* สีโปรไฟล์แต่ละคน + ลูกเล่นตัวอักษร */
+    .member-card.noppasit {
+      background: linear-gradient(135deg, #1a237e 60%, #232526 100%);
+      border: 3px solid #3949ab;
+    }
+    .member-card.sakon {
+      background: linear-gradient(135deg, #00695c 60%, #232526 100%);
+      border: 3px solid #26a69a;
+    }
+    .member-card.piyawat {
+      background: linear-gradient(135deg, #c62828 60%, #232526 100%);
+      border: 3px solid #ef5350;
+    }
+    .member-card.nattanon {
+      background: linear-gradient(135deg, #00bcd4 60%, #232526 100%);
+      border: 3px solid #00eaff;
+    }
+    .nattanon .member-name {
+      color: #fff;
+      text-shadow: 0 0 24px #00eaff, 0 2px 8px #232526, 0 0 16px #fff;
+      animation: namePulseNattanon 1.2s infinite alternate;
+      filter: drop-shadow(0 0 12px #00eaff);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    @keyframes namePulseNattanon {
+      0% { text-shadow: 0 0 24px #00eaff, 0 2px 8px #232526, 0 0 16px #fff; }
+      100% { text-shadow: 0 0 48px #fff, 0 2px 8px #232526, 0 0 32px #00eaff; }
+    }
     .member-card {
-      background: rgba(255,255,255,0.08);
       border-radius: 24px;
       box-shadow: 0 8px 32px #0008;
       overflow: hidden;
       width: 220px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       position: relative;
       cursor: pointer;
-      border: 3px solid transparent;
     }
     .member-card.blink {
       animation: blink 0.5s 2;
@@ -54,7 +93,6 @@
     .member-card:hover {
       transform: scale(1.08) translateY(-8px);
       box-shadow: 0 16px 48px #ffd00080;
-      border: 3px solid #ffd000;
       z-index: 2;
     }
     .member-img {
@@ -64,6 +102,7 @@
       transition: filter 0.2s;
       filter: grayscale(0.2) brightness(0.95);
       border-bottom: 2px solid #ffd000;
+      background: #fff;
     }
     .member-card:hover .member-img {
       filter: none;
@@ -74,19 +113,61 @@
       text-align: center;
       color: #fff;
     }
+    /* ชื่อตัวอักษรแต่ละคน */
     .member-name {
-      font-size: 1.3em;
+      font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 6px;
-      letter-spacing: 1px;
-      color: #ffd000;
-      text-shadow: 0 2px 8px #232526;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #232526, 0 0 16px #fff, 0 0 24px #ffd000;
       text-decoration: none;
       display: block;
-      transition: color 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      animation: namePulse 1.2s infinite alternate;
+      filter: drop-shadow(0 0 8px #fff);
     }
-    .member-card:hover .member-name {
-      color: #fff;
+    .noppasit .member-name {
+      color: #00eaff;
+      text-shadow: 0 0 24px #3949ab, 0 2px 8px #232526, 0 0 16px #00eaff;
+      animation: namePulseBlue 1.2s infinite alternate;
+      filter: drop-shadow(0 0 12px #00eaff);
+    }
+    .sakon .member-name {
+      color: #26a69a;
+      text-shadow: 0 0 24px #26a69a, 0 2px 8px #232526, 0 0 16px #26a69a;
+      animation: namePulseGreen 1.2s infinite alternate;
+      filter: drop-shadow(0 0 12px #26a69a);
+    }
+    .piyawat .member-name {
+      color: #ff4f81;
+      text-shadow: 0 0 24px #ef5350, 0 2px 8px #232526, 0 0 16px #ff4f81;
+      animation: namePulseRed 1.2s infinite alternate;
+      filter: drop-shadow(0 0 12px #ff4f81);
+    }
+    .nattanon .member-name {
+      color: #00c853;
+      text-shadow: 0 0 24px #fff, 0 2px 8px #232526, 0 0 16px #00c853;
+      animation: namePulseNattanon 1.2s infinite alternate;
+      filter: drop-shadow(0 0 12px #00c853);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    @keyframes namePulseBlue {
+      0% { text-shadow: 0 0 24px #3949ab, 0 2px 8px #232526, 0 0 16px #00eaff; }
+      100% { text-shadow: 0 0 48px #00eaff, 0 2px 8px #232526, 0 0 32px #00eaff; }
+    }
+    @keyframes namePulseGreen {
+      0% { text-shadow: 0 0 24px #26a69a, 0 2px 8px #232526, 0 0 16px #26a69a; }
+      100% { text-shadow: 0 0 48px #26a69a, 0 2px 8px #232526, 0 0 32px #26a69a; }
+    }
+    @keyframes namePulseRed {
+      0% { text-shadow: 0 0 24px #ef5350, 0 2px 8px #232526, 0 0 16px #ff4f81; }
+      100% { text-shadow: 0 0 48px #ff4f81, 0 2px 8px #232526, 0 0 32px #ff4f81; }
+    }
+    @keyframes namePulseNattanon {
+      0% { text-shadow: 0 0 24px #00eaff, 0 2px 8px #232526, 0 0 16px #fff; }
+      100% { text-shadow: 0 0 48px #fff, 0 2px 8px #232526, 0 0 32px #00eaff; }
     }
     .member-desc {
       font-size: 1em;
@@ -99,52 +180,62 @@
       color: #bfc0c0;
       font-style: italic;
     }
-    /* จิบิวิ่งและกระโดด */
-    .chibi1, .chibi2 {
+    /* จิบิ 1 วิ่งวนไปมา (ซ้าย-ขวา-ซ้าย) กลับด้านให้ถูกต้อง */
+    .chibi-run {
       position: fixed;
-      bottom: 32px;
-      width: 64px;
+      bottom: 24px;
+      left: 0;
+      width: 80px;
       z-index: 99;
       pointer-events: none;
-      animation-timing-function: linear;
+      animation: runChibiLoop 8s linear infinite;
+      filter: drop-shadow(0 2px 8px #232526);
+      background: none;
+      /* กลับด้านภาพให้วิ่งจากขวาไปซ้าย */
+      transform: scaleX(-1);
     }
-    .chibi1 {
-      left: 0;
-      animation: runChibi1 8s linear infinite;
+    @keyframes runChibiLoop {
+      0% { left: 0; transform: scaleX(-1);}
+      45% { left: calc(100vw - 80px); transform: scaleX(-1);}
+      50% { left: calc(100vw - 80px); transform: scaleX(1);}
+      95% { left: 0; transform: scaleX(1);}
+      100% { left: 0; transform: scaleX(-1);}
     }
-    .chibi2 {
-      left: 80vw;
-      animation: jumpChibi2 3s ease-in-out infinite;
+    /* จิบิ 2 และ 3 ยืนเต้น */
+    .chibi-dance {
+      position: fixed;
+      bottom: 120px;
+      left: 8vw;
+      width: 80px;
+      z-index: 99;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 8px #232526);
+      background: none;
     }
-    @keyframes runChibi1 {
-      0% { left: -70px; }
-      10% { transform: scaleX(1); }
-      45% { left: calc(100vw - 70px); transform: scaleX(1); }
-      50% { left: calc(100vw - 70px); transform: scaleX(-1); }
-      95% { left: -70px; transform: scaleX(-1);}
-      100% { left: -70px; transform: scaleX(1);}
-    }
-    @keyframes jumpChibi2 {
-      0% { bottom: 32px; }
-      20% { bottom: 80px; }
-      40% { bottom: 32px; }
-      60% { bottom: 80px; }
-      80% { bottom: 32px; }
-      100% { bottom: 32px; }
+    .chibi-dance2 {
+      position: fixed;
+      bottom: 120px;
+      right: 8vw;
+      width: 80px;
+      z-index: 99;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 8px #232526);
+      background: none;
     }
     @media (max-width: 900px) {
       .team-gallery { gap: 18px; }
       .member-card { width: 160px; }
       .member-img { height: 160px; }
-      .chibi1, .chibi2 { width: 48px; }
+      .chibi-run, .chibi-dance, .chibi-dance2 { width: 56px; }
     }
     @media (max-width: 600px) {
       .team-title { font-size: 2em; }
       .team-gallery { flex-direction: column; align-items: center; }
       .member-card { width: 90vw; }
       .member-img { height: 40vw; }
-      .chibi1, .chibi2 { width: 36px; }
-      .chibi2 { left: 60vw; }
+      .chibi-run, .chibi-dance, .chibi-dance2 { width: 38px; }
+      .chibi-dance { left: 2vw; }
+      .chibi-dance2 { right: 2vw; }
     }
   </style>
   <script>
@@ -160,12 +251,30 @@
         });
       });
     });
+    // เอฟเฟกต์เลื่อนการ์ดมาด้านหน้าก่อนเปลี่ยนหน้า
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.member-card').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          // ลบ active จากทุกการ์ดก่อน
+          document.querySelectorAll('.member-card').forEach(function(c) {
+            c.classList.remove('active');
+          });
+          // ใส่ active ที่การ์ดที่ถูกคลิก
+          card.classList.add('active');
+          // เลื่อนการ์ดมาด้านหน้า 700ms แล้วค่อยไปหน้าโปรไฟล์
+          setTimeout(function() {
+            window.location.href = card.getAttribute('href');
+          }, 700);
+        });
+      });
+    });
   </script>
 </head>
 <body>
   <div class="team-title">Team-E-CHAI4MIKIAO</div>
   <div class="team-gallery">
-    <a class="member-card" href="Team-member/Noppasit.html">
+    <a class="member-card noppasit" href="Team-member/Noppasit.html">
       <img class="member-img" src="Team-member/our_picture/Noppasit.jpg" alt="Noppasit Sattham">
       <div class="member-info">
         <span class="member-name">Noppasit Sattham</span>
@@ -173,7 +282,7 @@
         <div class="member-role">Game Strategist</div>
       </div>
     </a>
-    <a class="member-card" href="Team-member/Sakon.html">
+    <a class="member-card sakon" href="Team-member/Sakon.html">
       <img class="member-img" src="Team-member/our_picture/Sakon.jpg" alt="Sakon Keawkaow">
       <div class="member-info">
         <span class="member-name">Sakon Keawkaow</span>
@@ -181,7 +290,7 @@
         <div class="member-role">Backend Developer</div>
       </div>
     </a>
-    <a class="member-card" href="Team-member/Piyawat.html">
+    <a class="member-card piyawat" href="Team-member/Piyawat.html">
       <img class="member-img" src="Team-member/our_picture/Piyawat.jpg" alt="Piyawat Thasom">
       <div class="member-info">
         <span class="member-name">Piyawat Thasom</span>
@@ -189,7 +298,7 @@
         <div class="member-role">Designer & UX/UI</div>
       </div>
     </a>
-    <a class="member-card" href="Team-member/Nattanon.html">
+    <a class="member-card nattanon" href="Team-member/Nattanon.html">
       <img class="member-img" src="Team-member/our_picture/Nattanon.jpg" alt="Nattanon Saengyaem">
       <div class="member-info">
         <span class="member-name">Nattanon Saengyaem</span>
@@ -198,9 +307,11 @@
       </div>
     </a>
   </div>
-  <!-- ตัวจิบิ 1 วิ่ง -->
-  <img src="Team-member/our_picture/chibi1.gif" class="chibi1" alt="chibi running">
-  <!-- ตัวจิบิ 2 กระโดด -->
-  <img src="Team-member/our_picture/chibi2.png" class="chibi2" alt="chibi jumping">
+  <!-- ตัวจิบิ 1 วิ่งจากขวาไปซ้ายแบบวน oneway -->
+  <img src="Team-member/our_picture/1.gif" class="chibi-run" alt="chibi running">
+  <!-- ตัวจิบิ 2 ยืนเต้น -->
+  <img src="Team-member/our_picture/2.gif" class="chibi-dance" alt="chibi dancing">
+  <!-- ตัวจิบิ 3 ยืนเต้น -->
+  <img src="Team-member/our_picture/3.gif" class="chibi-dance2" alt="chibi dancing">
 </body>
 </html>
